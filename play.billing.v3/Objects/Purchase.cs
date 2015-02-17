@@ -1,7 +1,7 @@
 using System;
 using System.Json;
 
-namespace play.billing.v3
+namespace Google.Play.Billing
 {
 	public class Purchase
 	{

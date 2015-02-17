@@ -1,7 +1,7 @@
 using System;
 using Android.OS;
 
-namespace play.billing.v3
+namespace Google.Play.Billing
 {
 	public class ConsumePurchase : BillingRequest<Response>
 	{

@@ -9,11 +9,11 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using System.Text;
-using play.billing.v3;
+using Google.Play.Billing;
 
 namespace PlayBillingSample
 {
-	[Activity(Label = "play.billing.v3", MainLauncher = true, Icon = "@drawable/icon")]
+	[Activity(Label = "Google.Play.Billing", MainLauncher = true, Icon = "@drawable/icon")]
 	public class Activity1 : Activity, IPlayListener
 	{
 		BillingService m_service;
@@ -51,14 +51,14 @@ namespace PlayBillingSample
 						//Existing purchases
 						m_service.SendRequest<GetPurchasesResponse>(new GetPurchases(Consts.ITEM_TYPE_INAPP, m_requestId++));
 						//All SKUs that have or could be purchased
-						m_service.SendRequest<GetSkuDetailsResponse>(new GetSkuDetails(Consts.ITEM_TYPE_INAPP, m_requestId++, new List<string>() { "play.billing.v3.item_2" }));
+						m_service.SendRequest<GetSkuDetailsResponse>(new GetSkuDetails(Consts.ITEM_TYPE_INAPP, m_requestId++, new List<string>() { "Google.Play.Billing.item_2" }));
 					}
 				});
 
 
 			//BUY (use android.test.purchased for a static response)
 			var pButton = FindViewById<Button>(Resource.Id.PurchaseButton);
-			pButton.Click += delegate { SendBuyRequest("play.billing.v3.item_2"); };
+			pButton.Click += delegate { SendBuyRequest("Google.Play.Billing.item_2"); };
 
 			//CANCEL
 			var cButton = FindViewById<Button>(Resource.Id.CancelButton);
@@ -73,7 +73,7 @@ namespace PlayBillingSample
 			var skuButton = FindViewById<Button>(Resource.Id.SkuButton);
 			skuButton.Click += delegate 
 			{
-				m_service.SendRequest<GetSkuDetailsResponse>(new GetSkuDetails(Consts.ITEM_TYPE_INAPP, m_requestId++, new List<string>() { "play.billing.v3.item_2" })).ContinueWith(t =>
+				m_service.SendRequest<GetSkuDetailsResponse>(new GetSkuDetails(Consts.ITEM_TYPE_INAPP, m_requestId++, new List<string>() { "Google.Play.Billing.item_2" })).ContinueWith(t =>
 					{
 						this.RunOnUiThread(() =>
 						{
@@ -90,7 +90,7 @@ namespace PlayBillingSample
 			var consumeButton = FindViewById<Button>(Resource.Id.ConsumeButton);
 			consumeButton.Click += delegate
 			{
-				var p = m_service.CurrentInventory.Purchases.Where(x => x.Sku == "play.billing.v3.item_2").FirstOrDefault();
+				var p = m_service.CurrentInventory.Purchases.Where(x => x.Sku == "Google.Play.Billing.item_2").FirstOrDefault();
 				
 				if (p == null)
 				{

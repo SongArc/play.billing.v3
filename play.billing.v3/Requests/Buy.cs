@@ -2,7 +2,7 @@ using Android.App;
 using Android.Content;
 using Android.OS;
 
-namespace play.billing.v3
+namespace Google.Play.Billing
 {
 	public class Buy : BillingRequest<Response>
 	{

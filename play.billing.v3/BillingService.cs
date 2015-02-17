@@ -5,7 +5,7 @@ using Android.OS;
 using Com.Android.Vending.Billing;
 using System.Threading.Tasks;
 
-namespace play.billing.v3
+namespace Google.Play.Billing
 {
 	public partial class BillingService : Service, IServiceConnection, IBillingService
 	{

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Android.Text;
 using Android.Widget;
 
-namespace play.billing.v3
+namespace Google.Play.Billing
 {
 	public class GetPurchases : BillingRequest<GetPurchasesResponse>
 	{

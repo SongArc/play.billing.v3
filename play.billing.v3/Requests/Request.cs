@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace play.billing.v3
+namespace Google.Play.Billing
 {
 	public interface IBillingRequest
 	{

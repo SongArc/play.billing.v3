@@ -4,7 +4,7 @@ using Android.Content;
 using Android.OS;
 using Com.Android.Vending.Billing;
 
-namespace play.billing.v3
+namespace Google.Play.Billing
 {
 	public interface IBillingService
 	{

@@ -5,7 +5,7 @@ using Android.Text;
 using Java.Security.Spec;
 using Java.Lang;
 
-namespace play.billing.v3
+namespace Google.Play.Billing
 {
 	public class Security
 	{

@@ -1,4 +1,4 @@
-namespace play.billing.v3
+namespace Google.Play.Billing
 {
 	public interface IPlayListener
 	{

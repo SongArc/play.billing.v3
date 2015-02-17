@@ -2,7 +2,7 @@ using Android.Content;
 using Android.OS;
 using Java.Lang;
 
-namespace play.billing.v3
+namespace Google.Play.Billing
 {
 	public class Utils
 	{

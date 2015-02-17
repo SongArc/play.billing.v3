@@ -4,7 +4,7 @@ using System.Linq;
 using Android.OS;
 
 
-namespace play.billing.v3
+namespace Google.Play.Billing
 {
 	public class GetSkuDetails : BillingRequest<GetSkuDetailsResponse>
 	{

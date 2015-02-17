@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Collections.Concurrent;
 using System.Linq;
 
-namespace play.billing.v3
+namespace Google.Play.Billing
 {
 	public class Inventory
 	{
