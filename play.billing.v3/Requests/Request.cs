@@ -70,13 +70,11 @@ namespace Google.Play.Billing
 	public class GetPurchasesResponse : Response
 	{
 		public List<Purchase> PurchasedItems;
-		public List<Purchase> FailedItems;
 
-		public GetPurchasesResponse(List<Purchase> purchasedItems, List<Purchase> failedItems)
+		public GetPurchasesResponse(List<Purchase> purchasedItems)
 			: base(Consts.BILLING_RESPONSE_RESULT_OK)
 		{
 			this.PurchasedItems = purchasedItems;
-			this.FailedItems = failedItems;
 		}
 
 		public GetPurchasesResponse(int responseCode, Exception ex = null)

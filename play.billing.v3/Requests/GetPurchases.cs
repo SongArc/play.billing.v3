@@ -26,7 +26,6 @@ namespace Google.Play.Billing
 			{				
 				string continueToken = null;
 				var purchases = new List<Purchase>();
-				var failures = new List<Purchase>();
 
 				do
 				{
@@ -70,27 +69,17 @@ namespace Google.Play.Billing
 
 							var purchase = new Purchase(this.m_itemType, purchaseData, signature);
 							
-							if (Security.VerifyPurchase(service.AppKey, purchaseData, signature))
-							{
-								Utils.LogDebug("Has Purchased: " + sku);								
-								purchases.Add(purchase);
+							Utils.LogDebug("Has Purchased: " + sku);								
+							purchases.Add(purchase);
 
-								if (TextUtils.IsEmpty(purchase.Token))
-								{
-									Utils.LogWarn("BUG: empty/null token!");
-									Utils.LogDebug("Purchased data: " + purchaseData);
-								}
-
-								// Record ownership and token
-								service.CurrentInventory.AddPurchase(purchase);
-							}
-							else
+							if (TextUtils.IsEmpty(purchase.Token))
 							{
-								Utils.LogWarn("Purchased signature verification **FAILED**. Not adding item.");
-								Utils.LogDebug("   Purchase data: " + purchaseData);
-								Utils.LogDebug("   Signature: " + signature);
-								failures.Add(purchase);
+								Utils.LogWarn("BUG: empty/null token!");
+								Utils.LogDebug("Purchased data: " + purchaseData);
 							}
+
+							// Record ownership and token
+							service.CurrentInventory.AddPurchase(purchase);
 						}
 						catch (Exception e)
 						{
@@ -103,7 +92,7 @@ namespace Google.Play.Billing
 
 				} while (!TextUtils.IsEmpty(continueToken));
 
-				this.TCS.SetResult(new GetPurchasesResponse(purchases, failures));
+				this.TCS.SetResult(new GetPurchasesResponse(purchases));
 
 			}
 			catch (Exception e)

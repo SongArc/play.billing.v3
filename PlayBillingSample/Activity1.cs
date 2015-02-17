@@ -18,10 +18,6 @@ namespace PlayBillingSample
 	{
 		BillingService m_service;
 		int m_requestId = 1;
-
-		//For testing, put your applicatin key in m_sig
-		// if you are not using the static responses, you will need this to verify purchase requests
-		string m_sig = "";
 			
 		protected override void OnCreate(Bundle bundle)
 		{
@@ -37,10 +33,10 @@ namespace PlayBillingSample
 			//Change this to true if you expect signed responses 
 			// This would occur when installing a signed APK on your device and have already uploaded the signed APK to Google Play
 			//  see: http://developer.android.com/guide/google/play/billing/billing_testing.html
-			Security.ExpectSignature = false;
+			//Security.ExpectSignature = false;
 
 
-			m_service = new BillingService(this, this, m_sig);
+			m_service = new BillingService(this, this);
 			var connTask = m_service.Connect();
 
 			//Load inventory on start-up

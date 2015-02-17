@@ -9,11 +9,6 @@ namespace Google.Play.Billing
 	public interface IBillingService
 	{
 		/// <summary>
-		/// The license key for your application (used to verify in-app purchases)
-		/// </summary>
-		string AppKey { get; }
-		
-		/// <summary>
 		/// The activity that is launching the buy intent
 		/// </summary>
 		Activity MainActivity { get; }

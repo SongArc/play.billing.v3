@@ -16,20 +16,18 @@ namespace Google.Play.Billing
 		public bool SubscriptionsSupported { get; private set; }
 		public bool Connected { get; private set; }
 		public Inventory CurrentInventory { get; set; }
-		public string AppKey { get; private set; }
 
 		IPlayListener m_listener;
 		IBillingRequest m_curRequest;
 		object m_lock = new object();
 		TaskCompletionSource<bool> m_connectTcs = null;
 
-		public BillingService(Activity act, IPlayListener listener, string appKey) : base()
+		public BillingService(Activity act, IPlayListener listener) : base()
 		{
 			AttachBaseContext(act);			
 			MainActivity = act;
 			MainContext = act.ApplicationContext;
 			CurrentInventory = new Inventory();
-			this.AppKey = appKey;
 			m_listener = listener;
 		}
 
@@ -217,13 +215,6 @@ namespace Google.Play.Billing
 					var item = new Purchase(buyReq.ItemType, purchaseData, dataSignature);
 					string sku = item.Sku;
 
-					// Verify signature
-					if (!Security.VerifyPurchase(this.AppKey, purchaseData, dataSignature))
-					{
-						Utils.LogError("Purchase signature verification failed. SKU: " + sku);
-						return true;
-					}
-					Utils.LogDebug("Purchase signature verification passed. SKU: " + sku);
 					this.CurrentInventory.AddPurchase(item);
 				}
 				catch
