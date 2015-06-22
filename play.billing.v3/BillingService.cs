@@ -67,18 +67,18 @@ namespace Google.Play.Billing
 					if (!this.BindService(serviceIntent, this, Bind.AutoCreate))
 					{
 						Utils.LogError("Could not bind to the InAppBillingService.");
-						m_connectTcs.SetResult(false);
+						m_connectTcs.TrySetResult(false);
 					}
 				}
 				else
 				{
 					Utils.LogError("InAppBillingService is not available on this device.");
-					m_connectTcs.SetResult(false);
+                    m_connectTcs.TrySetResult(false);
 				}
 			}
 			catch (System.Exception e)
 			{
-				m_connectTcs.SetResult(false);
+                m_connectTcs.TrySetResult(false);
 				Utils.LogError("Bind Exception: " + e.ToString());
 			}
 
@@ -133,7 +133,7 @@ namespace Google.Play.Billing
 				//Just indicates that the connect request has completed
 				// check PurchasesSupported to know whether or not v3 is supported, if successful
 				if (m_connectTcs != null)
-					m_connectTcs.SetResult(this.Connected);
+					m_connectTcs.TrySetResult(this.Connected);
 			}
 		}
 
@@ -225,7 +225,7 @@ namespace Google.Play.Billing
 			}
 			finally
 			{
-				buyReq.TCS.SetResult(new Response(responseCode));
+				buyReq.TCS.TrySetResult(new Response(responseCode));
 			}
 
 			return true;
